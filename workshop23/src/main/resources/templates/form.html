@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      table,
+      th,
+      td {
+        border: 1px solid;
+      }
+    </style>
+    <title>Order Equiry Form</title>
+  </head>
+  <body>
+    <form data-th-action="@{/order/total}" method="get">
+      <table>
+        <tr>
+          <td>Order ID</td>
+          <td><input type="text" name="orderId" /></td>
+        </tr>
+      </table>
+      <br />
+      <button type="submit">Check</button>
+    </form>
+    <br /><br /><br />
+    <div data-th-if="${display}">
+      <table data-th-object="${orderDetails}">
+        <tr>
+          <td>Order ID</td>
+          <td data-th-text="*{id}"></td>
+        </tr>
+        <tr>
+          <td>Order Date</td>
+          <td data-th-text="*{orderDate}"></td>
+        </tr>
+        <tr>
+          <td>Customer ID</td>
+          <td data-th-text="*{customerId}"></td>
+        </tr>
+        <tr>
+          <td>Total price</td>
+          <td data-th-text="*{totalPrice}"></td>
+        </tr>
+        <tr>
+          <td>Discounted total price</td>
+          <td data-th-text="*{discountTotalPrice}"></td>
+        </tr>
+        <tr>
+          <td>Discounted price</td>
+          <td data-th-text="*{discountedPrice}"></td>
+        </tr>
+        <tr>
+          <td>Cost price</td>
+          <td data-th-text="*{costPrice}"></td>
+        </tr>
+      </table>
+    </div>
+    <div data-th-if="${error}">
+      <h5>Invalid order id.</h5>
+    </div>
+  </body>
+</html>
