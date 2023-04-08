@@ -5,6 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -23,11 +25,13 @@ public class OrderDetailsController {
         model.addAttribute("orderDetails", orderDetails);
         model.addAttribute("display", false);
         model.addAttribute("error", false);
+        model.addAttribute("id", "");
         return "form";
     }
 
     @GetMapping(path = "/total")
-    public String getOrderDetails(Model model, @RequestParam int orderId, @ModelAttribute OrderDetails orderdDetails) {
+    public String getOrderDetails(Model model, @RequestParam int orderId,
+            @ModelAttribute OrderDetails orderdDetails) {
 
         OrderDetails od = odService.getOrderDetails(orderId);
         orderdDetails = od;
@@ -41,6 +45,24 @@ public class OrderDetailsController {
         model.addAttribute("display", true);
         model.addAttribute("orderDetails", orderdDetails);
 
+        return "form";
+    }
+
+    @GetMapping(path = "/total/{id}")
+    public String getOrderDetails(Model model, @PathVariable String id,
+            @ModelAttribute OrderDetails orderdDetails) {
+        System.out.println("Path variable >>>>>>>>>>>>>>>" + id);
+        OrderDetails od = odService.getOrderDetails(Integer.parseInt(id));
+        orderdDetails = od;
+        if (orderdDetails == null) {
+            model.addAttribute("display", false);
+            model.addAttribute("error", true);
+            return "form";
+        }
+        System.out.println(orderdDetails.toString());
+        model.addAttribute("error", false);
+        model.addAttribute("display", true);
+        model.addAttribute("orderDetails", orderdDetails);
         return "form";
     }
 }
