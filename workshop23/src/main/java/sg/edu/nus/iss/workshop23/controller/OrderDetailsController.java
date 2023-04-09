@@ -52,7 +52,12 @@ public class OrderDetailsController {
         model.addAttribute("display", true);
         model.addAttribute("orderDetails", orderdDetails);
         model.addAttribute("orderIdList", orderIdList);
-        return "form";
+        // if return "form" then the URL will be in query string:
+        // http://localhost:8080/order/total?orderId=1
+        // return "form";
+
+        // return as path variable
+        return "redirect:/order/total/" + orderId;
     }
 
     // path variable GET method
