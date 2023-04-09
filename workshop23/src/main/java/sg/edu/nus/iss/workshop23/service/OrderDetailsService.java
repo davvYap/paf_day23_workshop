@@ -1,5 +1,7 @@
 package sg.edu.nus.iss.workshop23.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,5 +15,9 @@ public class OrderDetailsService {
 
     public OrderDetails getOrderDetails(int orderId) {
         return odRepo.getOrderDetails(orderId);
+    }
+
+    public List<String> getOrdersId() {
+        return odRepo.getOrdersId();
     }
 }

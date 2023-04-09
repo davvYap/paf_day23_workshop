@@ -11,7 +11,7 @@
         border: 1px solid;
       }
     </style>
-    <title>Order Equiry Form</title>
+    <title>Order Equiry Form (GET)</title>
   </head>
   <body>
     <form data-th-action="@{/order/total}" method="get">
@@ -25,6 +25,32 @@
       <br />
       <button type="submit">Check</button>
     </form>
+    <br /><br />
+
+    <!-- path variable -->
+    <div>
+      <h5>Select order id as path variable:</h5>
+      <ul>
+        <li data-th-each="id : ${orderIdList}">
+          <a data-th-href="@{/order/total/{orderId}(orderId=${id})}" data-th-text="${id}"></a>
+        </li>
+      </ul>
+    </div>
+    <br /><br />
+
+    <!-- path variable POST -->
+    <form data-th-action="@{/order/total/{id}}" method="post" data-th-object="${orderDetails}">
+      <table>
+        <tr>
+          <td>Order ID</td>
+          <!-- <td><input type="text" data-th-name="orderId" /></td> -->
+          <td><input type="text" name="id" data-th-field="*{id}" /></td>
+        </tr>
+      </table>
+      <br />
+      <button type="submit">Post</button>
+    </form>
+
     <br /><br /><br />
     <div data-th-if="${display}">
       <table data-th-object="${orderDetails}">

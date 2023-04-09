@@ -110,4 +110,9 @@ public class OrderDetails {
         return dateTime;
     }
 
+    public static int createIdFromResults(SqlRowSet rs) {
+        int id = rs.getInt("id");
+        return id;
+    }
+
 }

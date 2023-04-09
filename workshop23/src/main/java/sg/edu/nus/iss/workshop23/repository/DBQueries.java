@@ -11,4 +11,10 @@ public class DBQueries {
             left join products p on od.product_id = p.id
             where o.id = ?;
             """;
+
+    public static final String SELECT_ALL_DISTINCT_ORDER_ID = """
+            select distinct(o.id)
+            from orders o join order_details od on o.id = od.order_id
+            left join products p on od.product_id = p.id;
+            """;
 }

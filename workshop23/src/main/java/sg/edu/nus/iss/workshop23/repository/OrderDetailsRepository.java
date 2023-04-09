@@ -34,4 +34,17 @@ public class OrderDetailsRepository {
         }
         return orderDetailsList.get(0);
     }
+
+    // get list of order id
+    public List<String> getOrdersId() {
+        List<String> ordersId = new ArrayList<>();
+
+        SqlRowSet rs = jdbcTemplate.queryForRowSet(SELECT_ALL_DISTINCT_ORDER_ID);
+
+        while (rs.next()) {
+            ordersId.add(Integer.toString(OrderDetails.createIdFromResults(rs)));
+        }
+
+        return ordersId;
+    }
 }
