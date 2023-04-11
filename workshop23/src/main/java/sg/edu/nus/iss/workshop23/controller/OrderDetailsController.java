@@ -39,15 +39,15 @@ public class OrderDetailsController {
     public String getOrderDetails(Model model, @RequestParam int orderId,
             @ModelAttribute OrderDetails orderdDetails) {
         List<String> orderIdList = odService.getOrdersId();
-        OrderDetails od = odService.getOrderDetails(orderId);
-        orderdDetails = od;
-        if (orderdDetails == null) {
-            model.addAttribute("display", false);
-            model.addAttribute("error", true);
-            model.addAttribute("orderIdList", orderIdList);
-            return "form";
-        }
-        System.out.println(orderdDetails.toString());
+        // OrderDetails od = odService.getOrderDetails(orderId);
+        // orderdDetails = od;
+        // if (orderdDetails == null) {
+        // model.addAttribute("display", false);
+        // model.addAttribute("error", true);
+        // model.addAttribute("orderIdList", orderIdList);
+        // return "form";
+        // }
+        // System.out.println(orderdDetails.toString());
         model.addAttribute("error", false);
         model.addAttribute("display", true);
         model.addAttribute("orderDetails", orderdDetails);
